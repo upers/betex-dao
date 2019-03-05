@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.github.betex</groupId>
+	<groupId>io.upers.betex</groupId>
 	<artifactId>DAO</artifactId>
 	<version>0.0.1</version>
 
@@ -17,11 +17,10 @@
 	</properties>
 
 	<description>
-		Web3j GEO Plugin is tools for working with GEO smart contracts on ethereum.
-		Smart contracts source code: https://github.com/platinprotocol/solidityGEO
+		Library for platform.
 	</description>
 
-	<url>https://bitbucket.org/vareger/betex-backend</url>
+	<url>https://github.com/upers/betex-dao</url>
 
 	<licenses>
 		<license>
@@ -40,9 +39,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://bitbucket.org:vareger/betex-backend.git</connection>
-		<developerConnection>scm:git:ssh://bitbucket.org:vareger/betex-backend.git</developerConnection>
-		<url>https://bitbucket.org/vareger/betex-backend</url>
+		<connection>scm:git:git://github.com:upers/betex-dao.git</connection>
+		<developerConnection>scm:git:ssh://github.com:upers/betex-dao.git</developerConnection>
+		<url>https://github.com/upers/betex-dao</url>
 	</scm>
 
 	<dependencies>
