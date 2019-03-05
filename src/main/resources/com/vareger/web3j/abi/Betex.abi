@@ -1,0 +1,283 @@
+[
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "betexProxy",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "betexStorageAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "commissionProcent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_betexStorageAddress",
+          "type": "address"
+        },
+        {
+          "name": "_betexProxy",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "val",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "bidType",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "key",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "brokerId",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "BidUser",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "val",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "winValue",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "bidType",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "key",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardUser",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "key",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "callTokens",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "putTokens",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "callAmount",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "putAmount",
+          "type": "uint32"
+        },
+        {
+          "indexed": false,
+          "name": "bidType",
+          "type": "uint32"
+        }
+      ],
+      "name": "BasketChangeState",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "name": "_bidType",
+          "type": "uint32"
+        },
+        {
+          "name": "_key",
+          "type": "uint32"
+        },
+        {
+          "name": "_brokerId",
+          "type": "uint32"
+        }
+      ],
+      "name": "bidUser",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_key",
+          "type": "uint32"
+        }
+      ],
+      "name": "closeBasket",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_key",
+          "type": "uint32"
+        }
+      ],
+      "name": "getBidsAmount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "uint32"
+        },
+        {
+          "name": "_to",
+          "type": "uint32"
+        },
+        {
+          "name": "_bidType",
+          "type": "uint32"
+        },
+        {
+          "name": "_key",
+          "type": "uint32"
+        }
+      ],
+      "name": "reward",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_key",
+          "type": "uint32"
+        }
+      ],
+      "name": "finishBasket",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_percent",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCommissionProcent",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
