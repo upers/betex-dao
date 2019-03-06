@@ -145,9 +145,9 @@ public class PairRedisDAO {
 					operations.watch(CurrencyPair.KEY);
 					// start transaction
 					operations.multi();
-					redisTemplate.delete(CurrencyPair.KEY);
-					redisTemplate.opsForList().rightPushAll(CurrencyPair.KEY, pairListStr);
-					redisTemplate.boundListOps(CurrencyPair.KEY).expire(3600, TimeUnit.SECONDS);
+					operations.delete(CurrencyPair.KEY);
+					operations.opsForList().rightPushAll(CurrencyPair.KEY, pairListStr);
+					operations.boundListOps(CurrencyPair.KEY).expire(3600, TimeUnit.SECONDS);
 
 					// execute transaction
 					List<Object> list = operations.exec();
