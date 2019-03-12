@@ -30,7 +30,7 @@ public class SafeBasketService {
 		try {
 			return basketService.updateBySalt(basket, salt);
 		} catch (CannotCreateTransactionException | CannotAcquireLockException | TransactionSystemException | TransactionException e) {
-			log.error(e.getMessage());
+			log.error(e.getMessage(), e);
 			log.error("Could not serialize access to basket now. Try do transaction in 0.2 seconds.");
 			try {
 				Thread.sleep(200);
