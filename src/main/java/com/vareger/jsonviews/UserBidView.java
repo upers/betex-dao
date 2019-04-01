@@ -9,10 +9,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vareger.json.serialization.DateToTimeestampSerializerNumeric;
 import com.vareger.json.serialization.DoubleToDateDeserializer;
-import com.vareger.models.Basket;
-import com.vareger.models.BidType;
-import com.vareger.models.Rate;
-import com.vareger.models.UserBid;
+import com.vareger.models.*;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -27,6 +28,10 @@ public class UserBidView {
 	private Date timestamp;
 
 	private BidType type;
+
+	private TransactionStatus txStatus;
+
+	private BigInteger gasFee;
 
 	private BigInteger value;
 
@@ -52,6 +57,8 @@ public class UserBidView {
 		this.value = userBid.getAmount();
 		this.winValue = userBid.getWinAmount();
 		this.confirmed = userBid.isConfirmed();
+		this.gasFee = userBid.getGasFee();
+		this.txStatus = userBid.getTxStatus();
 		if (basket != null) {
 			this.basket = new BasketView(basket);
 			this.strikeRate = basket.getStrikeRate();
@@ -70,6 +77,8 @@ public class UserBidView {
 		this.winValue = userBid.getWinAmount();
 		this.confirmed = userBid.isConfirmed();
 		this.currentRate = currentRate;
+		this.gasFee = userBid.getGasFee();
+		this.txStatus = userBid.getTxStatus();
 		if (basket != null) {
 			this.basket = new BasketView(basket);
 			this.strikeRate = basket.getStrikeRate();
@@ -159,10 +168,36 @@ public class UserBidView {
 		this.currentRate = currentRate;
 	}
 
-	@Override
-	public String toString() {
-		return "UserBidView [basket=" + basket + ", id=" + id + ", timestamp=" + timestamp + ", type=" + type + ", value=" + value + ", winValue="
-				+ winValue + ", strikeRate=" + strikeRate + ", pairId=" + pairId + ", currentRate=" + currentRate + ", confirmed=" + confirmed + "]";
+	public TransactionStatus getTxStatus() {
+		return txStatus;
 	}
 
+	public void setTxStatus(TransactionStatus txStatus) {
+		this.txStatus = txStatus;
+	}
+
+	public BigInteger getGasFee() {
+		return gasFee;
+	}
+
+	public void setGasFee(BigInteger gasFee) {
+		this.gasFee = gasFee;
+	}
+
+	@Override
+	public String toString() {
+		return "UserBidView{" +
+				"basket=" + basket +
+				", id='" + id + '\'' +
+				", timestamp=" + timestamp +
+				", type=" + type +
+				", gasFee=" + gasFee +
+				", value=" + value +
+				", winValue=" + winValue +
+				", strikeRate=" + strikeRate +
+				", pairId='" + pairId + '\'' +
+				", currentRate=" + currentRate +
+				", confirmed=" + confirmed +
+				'}';
+	}
 }

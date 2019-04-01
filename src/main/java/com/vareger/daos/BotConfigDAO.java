@@ -2,6 +2,7 @@ package com.vareger.daos;
 
 import com.vareger.models.BotConfig;
 import com.vareger.models.Pair;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 

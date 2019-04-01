@@ -108,11 +108,6 @@ public class ContractController<T extends Contract> {
             T currContract = currContrWrap.contract;
             if (currContract.equals(inContract)) {
                 currContrWrap.state = State.FREE;
-                try {
-                    Web3jCommonTools.setGasPrice(inContract, currContrWrap.initGasPrice);
-                } catch (Exception e) {
-                    log.error(e.getMessage(), e);
-                }
                 log.info("Release contract with index: " + contractsWrapers.indexOf(currContrWrap));
                 break;
             }

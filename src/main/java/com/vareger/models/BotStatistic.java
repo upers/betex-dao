@@ -53,7 +53,11 @@ public class BotStatistic {
     @Convert(converter = BigIntegerConverter.class)
     private BigInteger currentBalance;
 
-    @Column(name = "current_balance")
+    @Column(name = "current_sponsor_balance")
+    @Convert(converter = BigIntegerConverter.class)
+    private BigInteger currentSponsorBalance;
+
+    @Column(name = "input_wei")
     @Convert(converter = BigIntegerConverter.class)
     private BigInteger inputWei;
 
@@ -68,7 +72,7 @@ public class BotStatistic {
     private BigInteger gasFee;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(columnDefinition = "last_checked_userbid_id")
+    @JoinColumn(name = "last_checked_userbid_id")
     private UserBid userBid;
 
     @Column(name = "last_checked_block")
@@ -76,5 +80,19 @@ public class BotStatistic {
 
     @Column(name = "last_checked_index")
     private Integer lastCheckerIndex;
+
+    @Column(name = "overhead")
+    @Convert(converter = BigIntegerConverter.class)
+    private BigInteger overhead;
+
+    @Column(name = "foreign_lose_volume")
+    @Convert(converter = BigIntegerConverter.class)
+    private BigInteger foreignLoseVolume;
+
+    @Column(name = "foreign_win_volume")
+    @Convert(converter = BigIntegerConverter.class)
+    private BigInteger foreignWinVolume;
+
+
 
 }

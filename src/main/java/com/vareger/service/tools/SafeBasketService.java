@@ -28,6 +28,7 @@ public class SafeBasketService {
 	 */
 	public Basket updateBySalt(Basket basket, Long salt) {
 		try {
+			System.out.println(basket);
 			return basketService.updateBySalt(basket, salt);
 		} catch (CannotCreateTransactionException | CannotAcquireLockException | TransactionSystemException | TransactionException e) {
 			log.error(e.getMessage(), e);

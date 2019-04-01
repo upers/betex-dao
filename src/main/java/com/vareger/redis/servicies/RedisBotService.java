@@ -62,15 +62,6 @@ public class RedisBotService {
 		valOps.set(REDIS_KEY, addressesStr);
 	}
 
-	public String getBotSponsorAddress() {
-		return valOps.get(REDIS_BOT_SPONSOR_KEY);
-	}
-
-	public void setBotSponsorAddress(String address) {
-		String clearHex = AddressValidator.getHexClear(address);
-		valOps.set(REDIS_BOT_SPONSOR_KEY, clearHex);
-	}
-
 	public List<String> getSponsorAddresses() throws IOException {
 		String addressesStr =  valOps.get(REDIS_SPONSOR_KEY);
 		
