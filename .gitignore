@@ -1,0 +1,34 @@
+.DS_Store
+.vscode
+*target*
+*.jar
+*.jar.pack.gz
+*.war
+*.ear
+*.class
+
+#Idea git ignore
+*.idea*
+**/*.iml
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.recommenders*
+Examples*
+*.project
+ExchangeRatesDemon\target*
+*.violet.html
+*prod_cred*
