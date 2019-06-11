@@ -11,6 +11,8 @@ public interface UserBidService extends Service<Integer, UserBid>{
 
 	UserBid addUserBid(UserBidDto userBidDto);
 
+	UserBid getByTxHash(String txHash);
+
 	List<UserBid> getByUserAddress(String userAddress);
 	
 	List<UserBid> getActiveByUserAddress(String userAddress);

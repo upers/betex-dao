@@ -26,6 +26,8 @@ public class TransactionHandler {
 
     private final static Logger log = LoggerFactory.getLogger(TransactionHandler.class);
 
+    protected final int maxTimeToWaitSec;
+
     protected final long interval;
 
     protected final Web3j web3j;
@@ -39,10 +41,7 @@ public class TransactionHandler {
      * threadPoolTaskScheduler
      */
     public TransactionHandler(Web3j web3j, ThreadPoolTaskScheduler threadPoolTaskScheduler) {
-        this.web3j = web3j;
-        this.threadPoolTaskScheduler = threadPoolTaskScheduler;
-        this.confAmount = BigInteger.valueOf(12);
-        this.interval = 20;
+        this(web3j, threadPoolTaskScheduler, 20, 12, 2400);
     }
 
     /**
@@ -51,10 +50,7 @@ public class TransactionHandler {
      * interval
      */
     public TransactionHandler(Web3j web3j, ThreadPoolTaskScheduler threadPoolTaskScheduler, int interval) {
-        this.web3j = web3j;
-        this.threadPoolTaskScheduler = threadPoolTaskScheduler;
-        this.interval = interval;
-        this.confAmount = BigInteger.valueOf(12);
+        this(web3j, threadPoolTaskScheduler, interval, 12, 2400);
     }
 
     /**
@@ -65,10 +61,23 @@ public class TransactionHandler {
      */
     public TransactionHandler(Web3j web3j, ThreadPoolTaskScheduler threadPoolTaskScheduler, int interval,
                               int confAmount) {
+        this(web3j, threadPoolTaskScheduler, interval, confAmount, 2400);
+    }
+
+    /**
+     * @param web3j
+     * @param threadPoolTaskScheduler
+     * @param interval
+     * @param confAmount
+     * @param maxTimeToWaitSec        wait for add transaction in pool on node if not added during this time believe that it fail
+     */
+    public TransactionHandler(Web3j web3j, ThreadPoolTaskScheduler threadPoolTaskScheduler, int interval,
+                              int confAmount, int maxTimeToWaitSec) {
         this.web3j = web3j;
         this.threadPoolTaskScheduler = threadPoolTaskScheduler;
         this.interval = interval;
         this.confAmount = BigInteger.valueOf(confAmount);
+        this.maxTimeToWaitSec = maxTimeToWaitSec;
     }
 
     /**
@@ -80,7 +89,7 @@ public class TransactionHandler {
      */
     public CompletableFuture<Boolean> handleTx(String txHash) {
         final CompletableFuture<Boolean> future = new CompletableFuture<>();
-        ConfirmationTask task = new ConfirmationTask(txHash, confAmount, 1200, future);
+        ConfirmationTask task = new ConfirmationTask(txHash, this.confAmount, this.maxTimeToWaitSec, future);
 
         long startTime = System.currentTimeMillis() + (interval / 3 * 1000);
         threadPoolTaskScheduler.schedule(task, new Date(startTime));
@@ -98,7 +107,7 @@ public class TransactionHandler {
      */
     public CompletableFuture<Boolean> handleTx(String txHash, BigInteger confAmount) {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
-        ConfirmationTask task = new ConfirmationTask(txHash, confAmount, 1200, future);
+        ConfirmationTask task = new ConfirmationTask(txHash, confAmount, this.maxTimeToWaitSec, future);
 
         long startTime = System.currentTimeMillis() + (interval * 1000);
         threadPoolTaskScheduler.schedule(task, new Date(startTime));
@@ -160,12 +169,14 @@ public class TransactionHandler {
 
                         if (new BigInteger(cleanHex, 16).compareTo(BigInteger.ZERO) == 0) {
                             log.debug(
-                                    "Transaction still not mined.\nApplication will check transaction status in: " + interval + "seconds. TxHash: " + txHash + " GasPrice: " + transaction
+                                    "Transaction still not mined.\nApplication will check transaction status in: " +
+                                            interval + "seconds. TxHash: " + txHash + " GasPrice: " + transaction
                                             .getGasPrice() + " Faile date if not be mined: " + limitDate);
                             //If transaction not mined to long fail it.
                             if (new Date().after(limitDate)) {
                                 log.debug(
-                                        "Transaction hasn't been mined for: " + maxTimeToWait + ". Execute on fail lambda.");
+                                        "Transaction hasn't been mined for: " + maxTimeToWait +
+                                                ". Execute on fail lambda.");
                                 onFail();
                             } else
                                 checkInFuture();
@@ -188,7 +199,8 @@ public class TransactionHandler {
 
                                 if (confirmations.compareTo(ConfirmationTask.this.confAmount) >= 0) {
                                     log.info(
-                                            "Transaction is successful!! Confirmations amount: " + confirmations + " txHash: " + txHash);
+                                            "Transaction is successful!! Confirmations amount: " + confirmations +
+                                                    " txHash: " + txHash);
                                     // if success transaction
                                     onSuccess();
                                 } else {
@@ -218,7 +230,8 @@ public class TransactionHandler {
             }).exceptionally(ex -> {
                 log.error(ex.getMessage(), ex);
                 log.error(
-                        "Something went wrong with getting information about transaction. Try again in: " + interval + " seconds." + " TxHash: " + txHash);
+                        "Something went wrong with getting information about transaction. Try again in: " + interval +
+                                " seconds." + " TxHash: " + txHash);
 
                 Date ranDate = new Date(System.currentTimeMillis() + interval * 1000);
                 threadPoolTaskScheduler.schedule(ConfirmationTask.this, ranDate);

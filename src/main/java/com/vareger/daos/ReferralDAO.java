@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class ReferralDAO extends AbstractDao<Integer, Referral> {
 
-    private static final String referralBidsQuery = "SELECT userbid.bid_type, userbid.bid_time, userbid.address, userbid.basket_id, userbid.reward_time, userbid.id, userbid.tx_hash, userbid.amount, userbid.win_amount, userbid.confirmed, userbid.broker_id FROM userbid " +
+    private static final String referralBidsQuery = "SELECT userbid.tx_status, userbid.gas_fee, userbid.bid_type, userbid.bid_time, userbid.address, userbid.basket_id, userbid.reward_time, userbid.id, userbid.tx_hash, userbid.amount, userbid.win_amount, userbid.confirmed, userbid.broker_id FROM userbid " +
             "INNER JOIN referral ON userbid.address = referral.address" +
             " INNER JOIN \"user\" ON referral.founder_id = \"user\".id" +
 //            " INNER JOIN basket ON userbid.basket_id = basket.id" +

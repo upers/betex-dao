@@ -1,5 +1,6 @@
 package com.vareger.daos;
 
+import com.vareger.models.Broker;
 import com.vareger.models.User;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;

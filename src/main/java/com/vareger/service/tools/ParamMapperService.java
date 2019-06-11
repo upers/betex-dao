@@ -30,4 +30,10 @@ public class ParamMapperService {
 
         return user;
     }
+
+    public String generateReferralSuffix() {
+        String referralSuffix = RandomStringUtils.randomAlphanumeric(REFERRAL_SUFFIX_LENGTH);
+
+        return referralSuffix;
+    }
 }

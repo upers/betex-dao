@@ -44,6 +44,8 @@ public class InitUserData {
 	private String status;
 	
 	private String email;
+
+	private String referralSuffix;
 	
 	private BigInteger volume;
 	
@@ -189,5 +191,13 @@ public class InitUserData {
 
 	public void setCurrencyPairs(List<CurrencyPair> currencyPairs) {
 		this.currencyPairs = currencyPairs;
+	}
+
+	public String getReferralSuffix() {
+		return referralSuffix;
+	}
+
+	public void setReferralSuffix(String referralSuffix) {
+		this.referralSuffix = referralSuffix;
 	}
 }

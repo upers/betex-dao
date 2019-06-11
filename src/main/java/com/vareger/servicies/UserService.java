@@ -10,4 +10,5 @@ public interface UserService extends Service<Integer, User> {
 	boolean mergeIfNotConfirmed(User user);
 
 	User getByReferralSuffix(String referralSuffix);
+
 }

@@ -64,6 +64,11 @@ public class UserBidServiceImpl extends ServiceImpl<Integer, UserBid> implements
 		return userBid;
 	}
 
+	@Override
+	public UserBid getByTxHash(String txHash) {
+		return userBidDAO.findByTxHash(txHash);
+	}
+
 	public List<UserBid> getByUserAddress(String userAddress) {
 		String clearHex = AddressValidator.getHexClear(userAddress);
 

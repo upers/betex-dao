@@ -22,7 +22,6 @@ public class User {
     private Integer id;
 
     @Column(name = "email")
-    @ValidEmail
     @NotNull
     private String email;
 

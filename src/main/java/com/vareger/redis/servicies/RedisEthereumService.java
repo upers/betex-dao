@@ -27,6 +27,10 @@ public class RedisEthereumService {
 	public static final String IN_ETH_NET = "in_node_rpc_url";
 	
 	public static final String EX_ETH_NET = "ex_node_rpc_url";
+
+	public static final String IN_ETH_NET_WS = "in_node_rpc_url_ws";
+
+	public static final String EX_ETH_NET_WS = "ex_node_rpc_url_ws";
 	
 	public static final String ORACLE_BETEX_CONTRACT_PK = "oracle_betex_contract_private_key";
 	
@@ -101,6 +105,22 @@ public class RedisEthereumService {
 	
 	public String getExNodeURL() {
 		return valOps.get(EX_ETH_NET);
+	}
+
+	public void setInWsNodeURL(String url) {
+		valOps.set(IN_ETH_NET_WS,  url);
+	}
+
+	public String getInWsNodeURL() {
+		return valOps.get(IN_ETH_NET_WS);
+	}
+
+	public void setExWsNodeURL(String url) {
+		valOps.set(EX_ETH_NET_WS,  url);
+	}
+
+	public String getExWsNodeURL() {
+		return valOps.get(EX_ETH_NET_WS);
 	}
 	
 	public void setOracacleBetexPK(String pk) {
