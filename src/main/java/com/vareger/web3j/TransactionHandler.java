@@ -146,7 +146,7 @@ public class TransactionHandler {
         private String txHash;
         private BigInteger confAmount;
 
-        public ConfirmationTask(String txHash, BigInteger confAmount, int maxTimeToWait,
+            public ConfirmationTask(String txHash, BigInteger confAmount, int maxTimeToWait,
                                 CompletableFuture<Boolean> future) {
             this.txHash = txHash;
             this.confAmount = confAmount;

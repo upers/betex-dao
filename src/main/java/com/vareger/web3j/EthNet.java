@@ -1,7 +1,7 @@
 package com.vareger.web3j;
 
 public enum EthNet {
-	MAINNET("http://mainnet.chain2web.com:8545"),
+	MAINNET("http://el.frontnode.vareger.com:9095"),
 	MAINNET_INFURA("https://mainnet.infura.io"),
 	PROPY_MAIN_NET("http://eth.propy.biz:8545"),
 	ROPSTEN("https://rbst1.betex.io"),
@@ -14,7 +14,7 @@ public enum EthNet {
 	BETEX_POA_PROD("https://eth-poa.betex.io"),
 //	BETEX_POA_PROD("https://neth-poa.betex.io"),
 	VAREGER_MAIN_NET("https://geth.vareger.com"),
-	ROPSTEN_VAREGER("http://ropsten.chain2web.com:8545"),
+	ROPSTEN_VAREGER("http://ropsten.frontnode.vareger.com:8545"),
 	ROPSTEN_INFURA_WS("wss://ropsten.infura.io/ws/v2"),
 	MAINNET_INFURA_WS("wss://mainnet.infura.io/ws/v2");
 	
