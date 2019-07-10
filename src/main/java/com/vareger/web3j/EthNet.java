@@ -2,14 +2,14 @@ package com.vareger.web3j;
 
 public enum EthNet {
 	MAINNET("http://el.frontnode.vareger.com:9095"),
-	MAINNET_INFURA("https://mainnet.infura.io"),
+	MAINNET_INFURA("https://mainnet.infura.io/v3"),
 	PROPY_MAIN_NET("http://eth.propy.biz:8545"),
 	ROPSTEN("https://rbst1.betex.io"),
 	ROPSTEN_FULL("http://parity.betex.io:8545"),
 	RINKEBY("https://eth1.betex.io"),
 	TESTRPC("http://localhost:8545"),
 	BETEX_DEV_NODE("https://testnet1.vareger.com"),
-	ROPSTEN_INFURA("https://ropsten.infura.io"),
+	ROPSTEN_INFURA("https://ropsten.infura.io/v3"),
 	BETEX_QUORUM_PROD("https://quorum-nv.betex.io"),
 	BETEX_POA_PROD("https://eth-poa.betex.io"),
 //	BETEX_POA_PROD("https://neth-poa.betex.io"),
@@ -19,7 +19,7 @@ public enum EthNet {
 	MAINNET_INFURA_WS("wss://mainnet.infura.io/ws/v2");
 	
 	
-	private static final String infuraToken = "nn1BMS0W0wUK0cfmWaRt";
+	private static final String infuraToken = "92c117e0df0646b2b385df39743acbbc";
 	
 	private EthNet(String apn) {
 		if (apn.indexOf("infura") > -1)
